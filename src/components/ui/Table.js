@@ -50,7 +50,7 @@ const BasicTable = () => {
         </TableBody>
       </Table>
     </TableContainer>
-    <AddModal modal={modal} closeModal={()=>{setModal(false)}}/>
+    <AddModal modal={modal} closeModal={()=>{setModal(false)}} />
     </>
   )
 }
