@@ -5,7 +5,7 @@ const Content = () => {
   return (
     <>
     <Filter/>
-    <BasicTable/>
+    <BasicTable />
     </>
   )
 }
