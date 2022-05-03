@@ -71,7 +71,7 @@ const AddModal = ({modal,closeModal}) => {
           </Typography>
           <ButtonGroup disableElevation variant="contained">
             <Button disabled={!validation}>Save</Button>
-            <Button>Cancel</Button>
+            <Button onClick={closeModal}>Cancel</Button>
           </ButtonGroup>
         </Box>
       </Modal>
