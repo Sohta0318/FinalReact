@@ -1,12 +1,22 @@
-import React,{useState} from 'react'
+import React,{useState,useRef} from 'react'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button'
+import FormLabel from '@mui/material/FormLabel';
+import { useDispatch } from 'react-redux';
+import { createCard } from '../../store/slice';
 
-const AddModal = ({modal,closeModal}) => {
+const AddModal = ({modal,closeModal,value}) => {
+  const idInput = useRef();
+  const titleInput = useRef();
+  const stateInput = useRef();
+  const urlInput = useRef();
+  const created_atInput = useRef();
+  const updated_atInput = useRef();
+  const dispatch = useDispatch()
   const style = {
     box:{
     position: 'absolute',
@@ -25,21 +35,25 @@ const AddModal = ({modal,closeModal}) => {
       margin: 'auto'
     }
   };
-  const test={
-    id:1,
-    title:'test',
-    state:'open',
-    url:'ushb',
-    created_at:Date.now(),
-    updated_at:Date.now(),
-      }
-      const [validation,setValidation] = useState(false)
-      const changeHandler = ()=>{
-        setValidation(false)
-        if(true){
-          setValidation(true)
+      const [isValid,setIsValid] = useState(false)
+      const addChangeHandler = ()=>{
+        setIsValid(false)
+        if(!idInput.current.value == '' &&!titleInput.current.value == '' &&!stateInput.current.value == ''  ){
+          setIsValid(true)
         }
       }
+      const test={
+        id:'idInput.current.value',
+        title:'titleInput.current.value',
+        state:'stateInput.current.value',
+        url:'urlInput.current.value',
+        created_at:Date.now(),
+        updated_at:Date.now(),
+          }
+          const saveHandler = ()=>{
+            dispatch(createCard(test))
+            closeModal()
+          }
   return (
     <Modal
         open={modal}
@@ -48,31 +62,33 @@ const AddModal = ({modal,closeModal}) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style.box}>
-        <Typography id="modal-modal-title" variant="h6" component="h2" style={style.title}>
+        <Typography  id="modal-modal-title" variant="h6" component="h2" style={style.title}>
             Add Modal
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 3 }} >
-          <TextField id="standard-basic" label="Id" variant="standard" style={style.input}/>
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          <TextField id="standard-basic" label="Title" variant="standard" />
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          <TextField id="standard-basic" label="State" variant="standard" />
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          <TextField id="standard-basic" label="Url" variant="standard" />
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          <TextField id="standard-basic" label="Created at" variant="standard" />
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          <TextField id="standard-basic" label="Updated at" variant="standard" />
-          </Typography>
+          <FormLabel onChange={addChangeHandler}>
+          
+          <TextField id="standard-basic" label="Id" variant="standard" style={style.input} value={value && value.id}   inputRef={idInput} error={!isValid} inputProps={{ maxLength: 4, pattern: "^[a-zA-Z0-9_]+$" }}/>
+
+          
+          <TextField id="standard-basic" label="Title" variant="standard" value={value && value.title} inputRef={titleInput}/>
+
+          
+          <TextField id="standard-basic" label="State" variant="standard" value={value&& value.state} inputRef={stateInput}/>
+
+          
+          <TextField id="standard-basic" label="Url" variant="standard" value={value&& value.url} inputRef={urlInput}/>
+
+          
+          <TextField id="standard-basic" label="Created at" variant="standard" value={value&& value.created_at} inputRef={created_atInput}/>
+
+          
+          <TextField id="standard-basic" label="Updated at" variant="standard" value={value&& value.updated_at} inputRef={updated_atInput}/>
+
           <ButtonGroup disableElevation variant="contained">
-            <Button disabled={!validation}>Save</Button>
+            <Button disabled={!isValid} onClick={saveHandler}>Save</Button>
             <Button onClick={closeModal}>Cancel</Button>
           </ButtonGroup>
+          </FormLabel>
         </Box>
       </Modal>
   )
