@@ -17,7 +17,10 @@ const slice = createSlice({
       card = action.payload
     },
     destroyCard:(state,action)=>{
-state.cards.filter(card=>card.id !== action.payload)
+      const resIndex = state.cards.findIndex(
+        (res) => res.id === action.payload
+      );
+      state.cards.splice(resIndex, 1);
     }
 
 

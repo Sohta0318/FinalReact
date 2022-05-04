@@ -9,7 +9,7 @@ import FormLabel from '@mui/material/FormLabel';
 import { useDispatch } from 'react-redux';
 import { createCard } from '../../store/slice';
 
-const AddModal = ({modal,closeModal}) => {
+const EditModal = ({modal,closeModal,value}) => {
   const idInput = useRef();
   const titleInput = useRef();
   const stateInput = useRef();
@@ -42,19 +42,18 @@ const AddModal = ({modal,closeModal}) => {
           setIsValid(true)
         }
       }
-      
-          const saveHandler = ()=>{
-            const test={
-              id:idInput.current.value,
-              title:titleInput.current.value,
-              state:stateInput.current.value,
-              url:urlInput.current.value,
-              created_at:Date.now(),
-              updated_at:Date.now(),
-                }
-            dispatch(createCard(test))
-            closeModal()
-          }
+      const saveHandler = ()=>{
+        const test={
+          id:idInput.current.value,
+          title:titleInput.current.value,
+          state:stateInput.current.value,
+          url:urlInput.current.value,
+          created_at:Date.now(),
+          updated_at:Date.now(),
+            }
+        dispatch(createCard(test))
+        closeModal()
+      }
   return (
     <Modal
         open={modal}
@@ -64,26 +63,26 @@ const AddModal = ({modal,closeModal}) => {
       >
         <Box sx={style.box}>
         <Typography  id="modal-modal-title" variant="h6" component="h2" style={style.title}>
-            Add Modal
+            Edit Modal
           </Typography>
           <FormLabel onChange={addChangeHandler}>
           
-          <TextField id="standard-basic" label="Id" variant="standard" style={style.input}    inputRef={idInput} error={!isValid} inputProps={{ maxLength: 4, pattern: "^[a-zA-Z0-9_]+$" }}/>
+          <TextField id="standard-basic" label="Id" variant="standard" style={style.input} value={value[0]?.id}   inputRef={idInput} error={!isValid} inputProps={{ maxLength: 4, pattern: "^[a-zA-Z0-9_]+$" }}/>
 
           
-          <TextField id="standard-basic" label="Title" variant="standard"  inputRef={titleInput}/>
+          <TextField id="standard-basic" label="Title" variant="standard" value={value[0]?.title} inputRef={titleInput}/>
 
           
-          <TextField id="standard-basic" label="State" variant="standard"  inputRef={stateInput}/>
+          <TextField id="standard-basic" label="State" variant="standard" value={ value[0]?.state} inputRef={stateInput}/>
 
           
-          <TextField id="standard-basic" label="Url" variant="standard"  inputRef={urlInput}/>
+          <TextField id="standard-basic" label="Url" variant="standard" value={ value[0]?.url} inputRef={urlInput}/>
 
           
-          <TextField id="standard-basic" label="Created at" variant="standard"  inputRef={created_atInput}/>
+          <TextField id="standard-basic" label="Created at" variant="standard" value={ value[0]?.created_at} inputRef={created_atInput}/>
 
           
-          <TextField id="standard-basic" label="Updated at" variant="standard"  inputRef={updated_atInput}/>
+          <TextField id="standard-basic" label="Updated at" variant="standard" value={ value[0]?.updated_at} inputRef={updated_atInput}/>
 
           <ButtonGroup disableElevation variant="contained">
             <Button disabled={!isValid} onClick={saveHandler}>Save</Button>
@@ -95,4 +94,4 @@ const AddModal = ({modal,closeModal}) => {
   )
 }
 
-export default AddModal
+export default EditModal
