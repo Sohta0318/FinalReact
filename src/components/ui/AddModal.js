@@ -1,13 +1,24 @@
-import React, { useState } from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import { TextField } from "@mui/material";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import Button from "@mui/material/Button";
+
+import React,{useState,useRef} from 'react'
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import { TextField } from '@mui/material';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Button from '@mui/material/Button'
+import FormLabel from '@mui/material/FormLabel';
+import { useDispatch } from 'react-redux';
+import { createCard } from '../../store/slice';
 import { border, fontWeight, height, padding, width } from "@mui/system";
 
-const AddModal = ({ modal, closeModal }) => {
+const AddModal = ({modal,closeModal}) => {
+  const idInput = useRef();
+  const titleInput = useRef();
+  const stateInput = useRef();
+  const urlInput = useRef();
+  const created_atInput = useRef();
+  const updated_atInput = useRef();
+  const dispatch = useDispatch()
   const style = {
     box: {
       position: "absolute",
@@ -20,6 +31,7 @@ const AddModal = ({ modal, closeModal }) => {
       boxShadow: 24,
       p: 4,
     },
+
     title: {
       textAlign: "left",
       marginBottom: "20px",
@@ -154,5 +166,74 @@ const AddModal = ({ modal, closeModal }) => {
     </Modal>
   );
 };
+    input:{
+      margin: 'auto'
+    },
+    button:{
+      '&:hover': {
+        backgroundColor: '#fff',
+        color: '#3c52b2',
+    },
+    }
+  };
+      const [isValid,setIsValid] = useState(false)
+      const addChangeHandler = ()=>{
+        setIsValid(false)
+        if(!idInput.current.value == '' &&!titleInput.current.value == '' &&!stateInput.current.value == ''  ){
+          setIsValid(true)
+        }
+      }
+      
+          const saveHandler = ()=>{
+            const test={
+              id:idInput.current.value,
+              title:titleInput.current.value,
+              state:stateInput.current.value,
+              url:urlInput.current.value,
+              created_at:Date.now(),
+              updated_at:Date.now(),
+                }
+            dispatch(createCard(test))
+            closeModal()
+          }
+  return (
+    <Modal
+        open={modal}
+        onClose={closeModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style.box}>
+        <Typography  id="modal-modal-title" variant="h6" component="h2" style={style.title}>
+            Add Modal
+          </Typography>
+          <FormLabel onChange={addChangeHandler}>
+          
+          <TextField id="standard-basic" label="Id" variant="standard" style={style.input}    inputRef={idInput} error={!isValid} inputProps={{ maxLength: 4, pattern: "^[a-zA-Z0-9_]+$" }}/>
+
+          
+          <TextField id="standard-basic" label="Title" variant="standard"  inputRef={titleInput}/>
+
+          
+          <TextField id="standard-basic" label="State" variant="standard"  inputRef={stateInput}/>
+
+          
+          <TextField id="standard-basic" label="Url" variant="standard"  inputRef={urlInput}/>
+
+          
+          <TextField id="standard-basic" label="Created at" variant="standard"  inputRef={created_atInput}/>
+
+          
+          <TextField id="standard-basic" label="Updated at" variant="standard"  inputRef={updated_atInput}/>
+
+          <ButtonGroup disableElevation variant="contained">
+            <Button disabled={!isValid} onClick={saveHandler} >Save</Button>
+            <Button onClick={closeModal} >Cancel</Button>
+          </ButtonGroup>
+          </FormLabel>
+        </Box>
+      </Modal>
+  )
+}
 
 export default AddModal;
