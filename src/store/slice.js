@@ -21,7 +21,53 @@ const slice = createSlice({
         (res) => res.id === action.payload
       );
       state.cards.splice(resIndex, 1);
-    }
+    },
+    idSort:(state,action)=>{
+      state.cards = state.cards.sort((a,b)=>{
+        if(a.id >b.id){
+          return 1
+        }else{
+          return -1
+        }
+      })
+    },
+    titleSort:(state)=>{
+      state.cards = state.cards.sort((a,b)=>{
+        if(a.title >b.title){
+          return 1
+        }else{
+          return -1
+        }
+      })
+    },
+    urlSort:(state)=>{
+      state.cards = state.cards.sort((a,b)=>{
+        if(a.url >b.url){
+          return 1
+        }else{
+          return -1
+        }
+      })
+    },
+    createdAtSort:(state)=>{
+      state.cards = state.cards.sort((a,b)=>{
+        if(a.created_at >b.created_at){
+          return 1
+        }else{
+          return -1
+        }
+      })
+    },
+    updatedAtSort:(state)=>{
+      state.cards = state.cards.sort((a,b)=>{
+        if(a.updated_at >b.updated_at){
+          return 1
+        }else{
+          return -1
+        }
+      })
+    },
+
 
 
   }
@@ -30,4 +76,4 @@ const slice = createSlice({
 
 export default slice.reducer;
 
-export const {createCard,updateCard,destroyCard} = slice.actions;
+export const {createCard,updateCard,destroyCard,idSort,titleSort,urlSort,createdAtSort,updatedAtSort} = slice.actions;

@@ -93,12 +93,7 @@ const AddModal = ({modal,closeModal}) => {
 
           <ButtonGroup disableElevation variant="contained">
             <Button disabled={!isValid} onClick={saveHandler} >Save</Button>
-            <Button onClick={closeModal} sx={{
-    ':hover': {
-      bgcolor: 'warning.main', 
-      color: 'white',
-    },
-  }}>Cancel</Button>
+            <Button onClick={closeModal} >Cancel</Button>
           </ButtonGroup>
           </FormLabel>
         </Box>

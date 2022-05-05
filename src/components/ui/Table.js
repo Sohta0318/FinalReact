@@ -9,13 +9,15 @@ import Paper from '@mui/material/Paper';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {useSelector } from 'react-redux';
+import {useDispatch, useSelector } from 'react-redux';
 import AddModal from './AddModal';
 
 import EditModal from './EditModal';
 import DestroyModal from './DestroyModal';
+import { createdAtSort, idSort, titleSort, updatedAtSort, urlSort } from '../../store/slice';
 
 const BasicTable = () => {
+  const dispatch = useDispatch()
   const sample = useSelector(state=>state.cards.cards)
   const [addModal,setAddModal]=useState(false)
   const [editModal,setEditModal]=useState(false)
@@ -32,18 +34,21 @@ const BasicTable = () => {
     const simpleCard = sample.filter(ca=>ca.id == id);
     setCard(simpleCard)
   }
+
+
+  
   return (
     <>
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer component={Paper} >
+      <Table sx={{ minWidth: 650 }} aria-label="simple table" >
         <TableHead>
           <TableRow>
-            <TableCell >Id</TableCell>
-            <TableCell >Title</TableCell>
+            <TableCell onClick={()=>{dispatch(idSort())}}>Id</TableCell>
+            <TableCell onClick={()=>{dispatch(titleSort())}}>Title</TableCell>
             <TableCell >State</TableCell>
-            <TableCell >Url</TableCell>
-            <TableCell >Created at</TableCell>
-            <TableCell >Updated at</TableCell>
+            <TableCell onClick={()=>{dispatch(urlSort())}}>Url</TableCell>
+            <TableCell onClick={()=>{dispatch(createdAtSort())}}>Created at</TableCell>
+            <TableCell onClick={()=>{dispatch(updatedAtSort())}}>Updated at</TableCell>
             <TableCell onClick={()=>{setAddModal(true)}}><AddIcon/></TableCell>
           </TableRow>
         </TableHead>
@@ -65,6 +70,7 @@ const BasicTable = () => {
             </TableRow>
           ))}
         </TableBody>
+        
       </Table>
     </TableContainer>
     <AddModal modal={addModal} closeModal={()=>{setAddModal(false)}} />
