@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import Button from '@mui/material/Button'
+import Button from '@mui/material/Button';
 import FormLabel from '@mui/material/FormLabel';
 import { useDispatch } from 'react-redux';
 import { createCard } from '../../store/slice';
