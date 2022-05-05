@@ -33,6 +33,12 @@ const AddModal = ({modal,closeModal}) => {
     },
     input:{
       margin: 'auto'
+    },
+    button:{
+      '&:hover': {
+        backgroundColor: '#fff',
+        color: '#3c52b2',
+    },
     }
   };
       const [isValid,setIsValid] = useState(false)
@@ -86,8 +92,13 @@ const AddModal = ({modal,closeModal}) => {
           <TextField id="standard-basic" label="Updated at" variant="standard"  inputRef={updated_atInput}/>
 
           <ButtonGroup disableElevation variant="contained">
-            <Button disabled={!isValid} onClick={saveHandler}>Save</Button>
-            <Button onClick={closeModal}>Cancel</Button>
+            <Button disabled={!isValid} onClick={saveHandler} >Save</Button>
+            <Button onClick={closeModal} sx={{
+    ':hover': {
+      bgcolor: 'warning.main', 
+      color: 'white',
+    },
+  }}>Cancel</Button>
           </ButtonGroup>
           </FormLabel>
         </Box>
