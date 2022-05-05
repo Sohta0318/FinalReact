@@ -67,8 +67,9 @@ const slice = createSlice({
         }
       })
     },
-
-
+    filterCard:(state,action)=>{
+      state.cards = state.cards.filter(card=>card.title === action.payload)
+    }
 
   }
 
@@ -76,4 +77,4 @@ const slice = createSlice({
 
 export default slice.reducer;
 
-export const {createCard,updateCard,destroyCard,idSort,titleSort,urlSort,createdAtSort,updatedAtSort} = slice.actions;
+export const {createCard,updateCard,destroyCard,idSort,titleSort,urlSort,createdAtSort,updatedAtSort,filterCard} = slice.actions;

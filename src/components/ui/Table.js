@@ -11,6 +11,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {useDispatch, useSelector } from 'react-redux';
 import AddModal from './AddModal';
+import { TextField } from '@mui/material';
+
 
 import EditModal from './EditModal';
 import DestroyModal from './DestroyModal';
@@ -39,6 +41,7 @@ const BasicTable = () => {
   
   return (
     <>
+    <TextField id="standard-basic" label="Standard" variant="standard" style={{height:'100px', marginTop:'200px'}}/>
     <TableContainer component={Paper} >
       <Table sx={{ minWidth: 650 }} aria-label="simple table" >
         <TableHead>
