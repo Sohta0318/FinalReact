@@ -48,10 +48,12 @@ const destroyHandler= ()=>{
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Url: {value[0]?.url}
           </Typography>
+
           <div style={{marginTop:40}}>
             <Button  onClick={destroyHandler} style={{marginRight: 10, color:'black'}}>Delete</Button>
             <Button onClick={closeModal} style={{color:'black'}}>Cancel</Button>
             </div>
+
         </Box>
       </Modal>
     </div>
