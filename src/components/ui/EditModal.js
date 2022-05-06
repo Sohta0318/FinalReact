@@ -73,7 +73,7 @@ const EditModal = ({modal,closeModal,value}) => {
           <FormLabel onChange={editChangeHandler}>
           
           <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
-          <TextField margin="normal" id="standard-basic" label="Id" variant="standard" style={style.input} defaultValue={value[0]?.id}   inputRef={idInput} error={!isValid} inputProps={{ maxLength: 4, pattern: "^[a-zA-Z0-9_]+$" }} />
+          <TextField margin="normal" id="standard-basic" label="Id" variant="standard" style={style.input} defaultValue={value[0]?.id}   inputRef={idInput}  />
           </FormControl>
 
           <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>

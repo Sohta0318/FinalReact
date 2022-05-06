@@ -74,7 +74,7 @@ const AddModal = ({modal,closeModal}) => {
           <FormLabel onChange={addChangeHandler} >
 
           <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
-          <TextField margin="normal" id="standard-basic" label="Id" variant="standard"    inputRef={idInput} error={!isValid} inputProps={{ maxLength: 4, pattern: "^[a-zA-Z0-9_]+$" }}/>
+          <TextField margin="normal" id="standard-basic" label="Id" variant="standard"    inputRef={idInput} />
           </FormControl>
 
           <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
