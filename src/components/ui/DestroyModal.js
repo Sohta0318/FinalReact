@@ -48,17 +48,12 @@ const destroyHandler= ()=>{
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Url: {value[0]?.url}
           </Typography>
-          <ButtonGroup disableElevation variant="contained">
-            <Button  onClick={destroyHandler} style={{backgroundColor:'gray',marginTop:'20px'}}>Delete</Button>
-            <Button style={{backgroundColor:'white', color:'black',borderRadius:'20%',marginTop:'20px'}} onClick={closeModal}
-            sx={{ 
-              ':hover': {
-                bgcolor: 'gray', 
-                color: 'black',
-              },
-            }}
-            >Cancel</Button>
-          </ButtonGroup>
+
+          <div style={{marginTop:40}}>
+            <Button  onClick={destroyHandler} style={{marginRight: 10, color:'black'}}>Delete</Button>
+            <Button onClick={closeModal} style={{color:'black'}}>Cancel</Button>
+            </div>
+
         </Box>
       </Modal>
     </div>
