@@ -67,6 +67,13 @@ const slice = createSlice({
         }
       })
     },
+    filterCards:(state,action)=>{
+      state.cards = state.cards.filter(card => {
+        return (
+        card.title.toLowerCase().indexOf(action.payload) !== -1
+        )})
+        // console.log(state.cards);
+    }
 
 
 
@@ -76,4 +83,4 @@ const slice = createSlice({
 
 export default slice.reducer;
 
-export const {createCard,updateCard,destroyCard,idSort,titleSort,urlSort,createdAtSort,updatedAtSort} = slice.actions;
+export const {createCard,updateCard,destroyCard,idSort,titleSort,urlSort,createdAtSort,updatedAtSort,filterCards} = slice.actions;
