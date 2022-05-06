@@ -1,10 +1,10 @@
 import Content from "./components/Content";
-import Home from "./components/layout/Header";
+import Header from "./components/layout/Header";
 
 function App() {
   return (
     <div>
-      <Home/>
+      <Header/>
       <Content/>
     </div>
   );

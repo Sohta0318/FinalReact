@@ -4,7 +4,7 @@ import ReplayIcon from '@mui/icons-material/Replay';
 import { Box } from '@mui/system';
 
 
-const Home = () => {
+const Header = () => {
   return (
     <AppBar>
       <Box sx={{ display: 'flex' }}>
@@ -19,4 +19,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Header

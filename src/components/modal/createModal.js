@@ -3,13 +3,13 @@ import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { TextField} from '@mui/material';
+import { TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import FormLabel from '@mui/material/FormLabel';
 import { useDispatch } from 'react-redux';
-import { updateCard } from '../../store/slice';
+import { createCard } from '../../store/cardSlice';
 
-const EditModal = ({modal,closeModal,value}) => {
+const AddModal = ({modal,closeModal}) => {
   const idInput = useRef();
   const titleInput = useRef();
   const stateInput = useRef();
@@ -41,24 +41,25 @@ const EditModal = ({modal,closeModal,value}) => {
     }
   };
       const [isValid,setIsValid] = useState(false)
-      const editChangeHandler = ()=>{
+      const addChangeHandler = ()=>{
         setIsValid(false)
-        if(!idInput.current.value == '' &&!titleInput.current.value == '' &&!stateInput.current.value == ''  ){
+        if(!idInput.current.value == '' && !titleInput.current.value == '' &&!stateInput.current.value == ''  ){
           setIsValid(true)
         }
       }
-      const editHandler = ()=>{
-        const test={
-          id: +idInput.current.value,
-          title:titleInput.current.value,
-          state:stateInput.current.value,
-          url:urlInput.current.value,
-          created_at:Date.now(),
-          updated_at:Date.now(),
-            }
-        dispatch(updateCard(test))
-        closeModal()
-      }
+      
+          const saveHandler = ()=>{
+            const test={
+              id:idInput.current.value,
+              title:titleInput.current.value,
+              state:stateInput.current.value,
+              url:urlInput.current.value,
+              created_at:Date.now(),
+              updated_at:Date.now(),
+                }
+            dispatch(createCard(test))
+            closeModal()
+          }
   return (
     <Modal
         open={modal}
@@ -68,36 +69,37 @@ const EditModal = ({modal,closeModal,value}) => {
       >
         <Box sx={style.box}>
         <Typography  id="modal-modal-title" variant="h6" component="h2" style={style.title}>
-            Edit Modal
+            Add new Issue
           </Typography>
-          <FormLabel onChange={editChangeHandler}>
+          <FormLabel onChange={addChangeHandler} >
+
+          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
+          <TextField margin="normal" id="standard-basic" label="Id" variant="standard"    inputRef={idInput} />
+          </FormControl>
+
+          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
+          <TextField margin="normal" id="standard-basic" label="Title" variant="standard"  inputRef={titleInput}/>
+          </FormControl>
+
+          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
+          <TextField margin="normal" id="standard-basic" label="State" variant="standard"  inputRef={stateInput}/>
+          </FormControl>
+
+          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
+          <TextField margin="normal" id="standard-basic" label="Url" variant="standard"  inputRef={urlInput} />
+          </FormControl>
+
+          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
+          <TextField margin="normal" id="standard-basic" label="Created at" variant="standard"  inputRef={created_atInput}/>
+          </FormControl>
+
+          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
+          <TextField margin="normal" id="standard-basic" label="Updated at" variant="standard"  inputRef={updated_atInput}/>
+          </FormControl>
           
-          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
-          <TextField margin="normal" id="standard-basic" label="Id" variant="standard" style={style.input} defaultValue={value[0]?.id}   inputRef={idInput}  />
-          </FormControl>
-
-          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
-          <TextField margin="normal" id="standard-basic" label="Title" variant="standard" defaultValue={value[0]?.title} inputRef={titleInput}/>
-          </FormControl>
-
-          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
-          <TextField margin="normal" id="standard-basic" label="State" variant="standard" defaultValue={ value[0]?.state} inputRef={stateInput}/>
-          </FormControl>
-
-          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
-          <TextField margin="normal" id="standard-basic" label="Url" variant="standard" defaultValue={ value[0]?.url} inputRef={urlInput}/>
-          </FormControl>
-
-          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
-          <TextField margin="normal" id="standard-basic" label="Created at" variant="standard" defaultValue={ value[0]?.created_at} inputRef={created_atInput}/>
-          </FormControl>
-
-          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
-          <TextField margin="normal" id="standard-basic" label="Updated at" variant="standard" defaultValue={ value[0]?.updated_at} inputRef={updated_atInput}/>
-          </FormControl>
 
           <div style={{marginTop:40}}>
-            <Button disabled={!isValid} onClick={editHandler} style={{color: !isValid ? '' :'black', marginRight: 10}}>Save</Button>
+            <Button disabled={!isValid} onClick={saveHandler} style={{color: !isValid ? '' :'black', marginRight: 10}}>Save</Button>
             <Button onClick={closeModal} style={{color:'black'}}>Cancel</Button>
             </div>
           </FormLabel>
@@ -106,4 +108,4 @@ const EditModal = ({modal,closeModal,value}) => {
   )
 }
 
-export default EditModal
+export default AddModal

@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { useDispatch } from 'react-redux';
-import { destroyCard } from '../../store/slice';
+import { destroyCard } from '../../store/cardSlice';
 
 const style = {
   position: 'absolute',

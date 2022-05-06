@@ -16,13 +16,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import { useSelector,useDispatch, shallowEqual } from "react-redux";
 
-import AddModal from "./AddModal";
+import AddModal from "../modal/createModal";
 import TextField from "@mui/material/TextField";
-import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
-import EditModal from './EditModal';
-import DestroyModal from './DestroyModal';
-import { createdAtSort, filterCards, idSort, titleSort, updatedAtSort, urlSort } from '../../store/slice';
+import EditModal from '../modal/updateModal';
+import DestroyModal from '../modal/deleteModal';
+import { createdAtSort, filterCards, idSort, titleSort, updatedAtSort, urlSort } from '../../store/cardSlice';
 import FormControl from '@mui/material/FormControl';
 
 
