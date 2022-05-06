@@ -23,6 +23,8 @@ import TablePagination from '@mui/material/TablePagination';
 import EditModal from './EditModal';
 import DestroyModal from './DestroyModal';
 import { createdAtSort, filterCards, idSort, titleSort, updatedAtSort, urlSort } from '../../store/slice';
+import FormControl from '@mui/material/FormControl';
+
 
 const BasicTable = () => {
 
@@ -63,7 +65,12 @@ const BasicTable = () => {
   
   return (
     <>
-    <TextField id="standard-basic" label="Standard" variant="standard" style={{height:'100px', marginTop:'200px'}} inputRef={filterRef} onChange={filterHandler}/>
+    <FormControl fullWidth sx={{ m: 1 }}>
+    <TextField id="standard-basic" label="Filter issues" variant="standard" style={{height:'100px'}} inputRef={filterRef} onChange={filterHandler}/>
+    </FormControl>
+    
+          
+        
 
   
       <TableContainer role="grid" component={Paper}>
@@ -156,8 +163,6 @@ const BasicTable = () => {
               rowsPerPage={rowsPerPage}
               page={page}
 
-              rowsPerPage={2}
-              page={1}
 
               SelectProps={{
                 inputProps: {
