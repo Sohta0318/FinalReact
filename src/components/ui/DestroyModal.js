@@ -12,9 +12,8 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 500,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
@@ -49,10 +48,10 @@ const destroyHandler= ()=>{
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Url: {value[0]?.url}
           </Typography>
-          <ButtonGroup disableElevation variant="contained">
-            <Button onClick={destroyHandler}>Delete</Button>
-            <Button onClick={closeModal}>Cancel</Button>
-          </ButtonGroup>
+          <div style={{marginTop:40}}>
+            <Button  onClick={destroyHandler} style={{marginRight: 10, color:'black'}}>Delete</Button>
+            <Button onClick={closeModal} style={{color:'black'}}>Cancel</Button>
+            </div>
         </Box>
       </Modal>
     </div>

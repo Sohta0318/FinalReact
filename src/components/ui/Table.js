@@ -72,20 +72,19 @@ const BasicTable = () => {
           
         
 
-
   
       <TableContainer role="grid" component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table" style={{tableLayout: 'fixed'}}>
           <TableHead>
             <TableRow>
-              <TableCell onClick={()=>{dispatch(idSort())}} style={{ padding: 0, cursor:'pointer'}}>Id</TableCell>
-              <TableCell onClick={()=>{dispatch(titleSort())}} style={{ padding: 0, cursor:'pointer'}}>Title</TableCell>
-              <TableCell style={{ padding: 0, cursor:'pointer'}}>State</TableCell>
-              <TableCell onClick={()=>{dispatch(urlSort())}} style={{ padding: 0,cursor:'pointer' }}>Url</TableCell>
-              <TableCell onClick={()=>{dispatch(createdAtSort())}} style={{ padding: "0 0 0 20px" }}>
+              <TableCell onClick={()=>{dispatch(idSort())}} style={{ paddingLeft: '20px', cursor:'pointer',width:'8vw'}}>Id</TableCell>
+              <TableCell onClick={()=>{dispatch(titleSort())}} style={{ padding: 0, cursor:'pointer',width:'17vw'}}>Title</TableCell>
+              <TableCell align='center' style={{ padding: 0, cursor:'pointer',width:'7vw'}}>State</TableCell>
+              <TableCell onClick={()=>{dispatch(urlSort())}} style={{ padding: 0,cursor:'pointer',width:'28vw' }}>Url</TableCell>
+              <TableCell onClick={()=>{dispatch(createdAtSort())}} style={{ padding: "0 0 0 20px" , width:'13vw'}}>
                 Created at
               </TableCell>
-              <TableCell onClick={()=>{dispatch(updatedAtSort())}} style={{ padding: 0 }}>Updated at</TableCell>
+              <TableCell onClick={()=>{dispatch(updatedAtSort())}} style={{ padding: 0,width:'13vw'}}>Updated at</TableCell>
               <TableCell onClick={() => {setAddModal(true);}}>
                 <AddIcon
                   style={{
@@ -108,18 +107,20 @@ const BasicTable = () => {
                 key={row.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
+                <TableCell 
+                style={{paddingLeft:'20px', width:'5%'}}
+                component="th" scope="row">
                   {row.id}
                 </TableCell>
                 <TableCell
                   align="left"
-                  style={{ height: "5px", padding: "0px", width: "25vw" }}
+                  style={{ height: "5px", padding: "0px" }}
                 >
                   {row.title}
                 </TableCell>
                 <TableCell
-                  align="left"
-                  style={{ height: "5px", padding: "0px" }}
+                  align="center"
+                  style={{ width:'5px',padding:"0px"}}
                 >
                   {row.state}
                 </TableCell>
@@ -128,29 +129,23 @@ const BasicTable = () => {
                   style={{
                     height: "5px",
                     padding: "0px",
-                    wordWrap: "breakAll",
-                    overflow:'hidden',
-                    textOverflow:'ellipsis',
-                    width:'30px'
                   }}
                 >
                   {row.url}
                 </TableCell>
                 <TableCell
                   align="left"
-                  style={{ height: "5px", padding: "0px 0px 0px 20px"}}
                 >
                   {row.created_at}
                 </TableCell>
                 <TableCell
                   align="left"
-                  style={{ height: "5px", padding: "0px" }}
                 >
                   {row.updated_at}
                 </TableCell>
                 <TableCell
                   align="left"
-                  style={{ height: "5px", padding: "0px" }}
+                  // style={{ height: "5px", padding: "0px" }}
                 >
                   <EditIcon color="error" onClick={()=>{editHandler(row.id)}} style={{ paddingRight: "10px", cursor:'pointer'}} />
                   <DeleteIcon color="error" onClick={()=>{destroyHandler(row.id)}} style={{ marginRight: "30px", cursor:'pointer'}} />
