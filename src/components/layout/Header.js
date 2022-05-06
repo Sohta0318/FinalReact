@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <AppBar>
       <Box sx={{ display: 'flex' }}>
-    <Toolbar>Angular 9 MatTable CRUD Example</Toolbar>
+    <Toolbar style={{backgroundColor:'#4050b5', fontSize:'18px', fontWeight:900}}>Angular 9 MatTable CRUD Example</Toolbar>
     <Toolbar >Reload data <ReplayIcon sx={{
     ':hover': {
       cursor: 'pointer', 
