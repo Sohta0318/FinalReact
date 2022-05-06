@@ -12,9 +12,8 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 500,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
@@ -50,8 +49,15 @@ const destroyHandler= ()=>{
             Url: {value[0]?.url}
           </Typography>
           <ButtonGroup disableElevation variant="contained">
-            <Button onClick={destroyHandler}>Delete</Button>
-            <Button onClick={closeModal}>Cancel</Button>
+            <Button  onClick={destroyHandler} style={{backgroundColor:'gray',marginTop:'20px'}}>Delete</Button>
+            <Button style={{backgroundColor:'white', color:'black',borderRadius:'20%',marginTop:'20px'}} onClick={closeModal}
+            sx={{ 
+              ':hover': {
+                bgcolor: 'gray', 
+                color: 'black',
+              },
+            }}
+            >Cancel</Button>
           </ButtonGroup>
         </Box>
       </Modal>
