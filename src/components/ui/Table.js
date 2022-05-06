@@ -1,4 +1,8 @@
+
 import React, { useRef, useState } from "react";
+
+
+
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -9,7 +13,9 @@ import Paper from "@mui/material/Paper";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+
 import { useSelector,useDispatch, shallowEqual } from "react-redux";
+
 import AddModal from "./AddModal";
 import TextField from "@mui/material/TextField";
 import TableFooter from '@mui/material/TableFooter';
@@ -21,7 +27,9 @@ import FormControl from '@mui/material/FormControl';
 
 
 const BasicTable = () => {
+
   const filterRef = useRef()
+
   const dispatch = useDispatch()
   const sample = useSelector(state=>state.cards.cards, shallowEqual)
   const [addModal,setAddModal]=useState(false)
@@ -41,6 +49,7 @@ const BasicTable = () => {
     const simpleCard = sample.filter(ca=>ca.id == id);
     setCard(simpleCard)
   }
+
   const filterHandler = ()=>{
     dispatch(filterCards(filterRef.current.value))
   }
@@ -62,6 +71,7 @@ const BasicTable = () => {
     
           
         
+
 
   
       <TableContainer role="grid" component={Paper}>
@@ -90,7 +100,10 @@ const BasicTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
+
             {sample.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
+
+
               <TableRow
                 key={row.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -151,16 +164,22 @@ const BasicTable = () => {
               rowsPerPageOptions={[5, 10, 25, 100,]}
               colSpan={3}
               count={sample.length}
+
               rowsPerPage={rowsPerPage}
               page={page}
+
+
               SelectProps={{
                 inputProps: {
                   'aria-label': 'Items per page:',
                 },
                 native: true,
               }}
+
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
+
+             
             />
           </TableRow>
         </TableFooter>
