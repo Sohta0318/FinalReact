@@ -1,10 +1,10 @@
 import React,{useState,useRef} from 'react'
+import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Button from '@mui/material/Button'
+import Button from '@mui/material/Button';
 import FormLabel from '@mui/material/FormLabel';
 import { useDispatch } from 'react-redux';
 import { createCard } from '../../store/slice';
@@ -23,16 +23,15 @@ const AddModal = ({modal,closeModal}) => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 450,
+    height: 500,
+    overflow: 'auto',
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    borderRadius: 2,
     boxShadow: 24,
     p: 4,},
     title:{
       textAlign:'center'
-    },
-    input:{
-      margin: 'auto'
     },
     button:{
       '&:hover': {
@@ -44,7 +43,7 @@ const AddModal = ({modal,closeModal}) => {
       const [isValid,setIsValid] = useState(false)
       const addChangeHandler = ()=>{
         setIsValid(false)
-        if(!idInput.current.value == '' &&!titleInput.current.value == '' &&!stateInput.current.value == ''  ){
+        if(!idInput.current.value == '' && !titleInput.current.value == '' &&!stateInput.current.value == ''  ){
           setIsValid(true)
         }
       }
@@ -70,31 +69,39 @@ const AddModal = ({modal,closeModal}) => {
       >
         <Box sx={style.box}>
         <Typography  id="modal-modal-title" variant="h6" component="h2" style={style.title}>
-            Add Modal
+            Add new Issue
           </Typography>
-          <FormLabel onChange={addChangeHandler}>
-          
-          <TextField id="standard-basic" label="Id" variant="standard" style={style.input}    inputRef={idInput} error={!isValid} inputProps={{ maxLength: 4, pattern: "^[a-zA-Z0-9_]+$" }}/>
+          <FormLabel onChange={addChangeHandler} >
 
-          
-          <TextField id="standard-basic" label="Title" variant="standard"  inputRef={titleInput}/>
+          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
+          <TextField margin="normal" id="standard-basic" label="Id" variant="standard"    inputRef={idInput} error={!isValid} inputProps={{ maxLength: 4, pattern: "^[a-zA-Z0-9_]+$" }}/>
+          </FormControl>
 
-          
-          <TextField id="standard-basic" label="State" variant="standard"  inputRef={stateInput}/>
+          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
+          <TextField margin="normal" id="standard-basic" label="Title" variant="standard"  inputRef={titleInput}/>
+          </FormControl>
 
-          
-          <TextField id="standard-basic" label="Url" variant="standard"  inputRef={urlInput}/>
+          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
+          <TextField margin="normal" id="standard-basic" label="State" variant="standard"  inputRef={stateInput}/>
+          </FormControl>
 
-          
-          <TextField id="standard-basic" label="Created at" variant="standard"  inputRef={created_atInput}/>
+          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
+          <TextField margin="normal" id="standard-basic" label="Url" variant="standard"  inputRef={urlInput} />
+          </FormControl>
 
-          
-          <TextField id="standard-basic" label="Updated at" variant="standard"  inputRef={updated_atInput}/>
+          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
+          <TextField margin="normal" id="standard-basic" label="Created at" variant="standard"  inputRef={created_atInput}/>
+          </FormControl>
 
-          <ButtonGroup disableElevation variant="contained">
-            <Button disabled={!isValid} onClick={saveHandler} >Save</Button>
-            <Button onClick={closeModal} >Cancel</Button>
-          </ButtonGroup>
+          <FormControl fullWidth sx={{ m: 1 }} style={{margin: 'auto'}}>
+          <TextField margin="normal" id="standard-basic" label="Updated at" variant="standard"  inputRef={updated_atInput}/>
+          </FormControl>
+          
+
+          <div style={{marginTop:40}}>
+            <Button disabled={!isValid} onClick={saveHandler} style={{color: !isValid ? '' :'black', marginRight: 10}}>Save</Button>
+            <Button onClick={closeModal} style={{color:'black'}}>Cancel</Button>
+            </div>
           </FormLabel>
         </Box>
       </Modal>
