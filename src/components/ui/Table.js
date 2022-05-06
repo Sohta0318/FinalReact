@@ -74,7 +74,7 @@ const BasicTable = () => {
 
   
       <TableContainer role="grid" component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table" style={{tableLayout: 'fixed'}}>
+        <Table sx={{ minWidth: 500 }} aria-label="custom pagination table" style={{tableLayout: 'fixed'}}>
           <TableHead>
             <TableRow>
               <TableCell onClick={()=>{dispatch(idSort())}} style={{ paddingLeft: '20px', cursor:'pointer',width:'8vw'}}>Id</TableCell>
@@ -152,17 +152,18 @@ const BasicTable = () => {
                 </TableCell>
               </TableRow>
             ))}
+
           </TableBody>
-          <TableFooter>
-          <TableRow>
-            <TablePagination
+      </Table>
+      <TablePagination
+            component='div'
               rowsPerPageOptions={[5, 10, 25, 100,]}
               colSpan={3}
               count={sample.length}
 
               rowsPerPage={rowsPerPage}
               page={page}
-
+                  
 
               SelectProps={{
                 inputProps: {
@@ -176,9 +177,6 @@ const BasicTable = () => {
 
              
             />
-          </TableRow>
-        </TableFooter>
-      </Table>
       </TableContainer>
      <AddModal modal={addModal} closeModal={()=>{setAddModal(false)}} />
     <EditModal modal={editModal} closeModal={()=>{setEditModal(false)}} value={card}/>
